@@ -3,3 +3,4 @@
 src/AutoMapper.EntityFramework/obj/
 *.xml
 *.suo
+src/AutoMapper.EntityFramework/bin/Debug/AutoMapper.EntityFramework.dll.config

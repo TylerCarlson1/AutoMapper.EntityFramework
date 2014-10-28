@@ -1,25 +1,10 @@
-﻿using System;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace AutoMapper.EntityFramework
 {
-    public static class Extensions
-    {
-        public static IPersistance Persist<TSource>(this DbSet<TSource> source)
-            where TSource : class
-        {
-            return new Persistance<TSource>(source, Mapper.Engine);
-        }
-    }
-
-    public interface IPersistance
-    {
-        void From<TFrom>(TFrom from) where TFrom : class;
-        void Remove<TFrom>(TFrom from) where TFrom : class;
-    }
-
     public class Persistance<TTo> : IPersistance
         where TTo : class
     {
@@ -32,7 +17,7 @@ namespace AutoMapper.EntityFramework
             _sourceSet = sourceSet;
         }
 
-        public void From<TFrom>(TFrom from)
+        public void InsertOrUpdate<TFrom>(TFrom from)
             where TFrom : class
         {
             var equivExpr = Mapper.Map<TFrom,Expression<Func<TTo, bool>>>(from);
